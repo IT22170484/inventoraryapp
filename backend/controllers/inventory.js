@@ -17,14 +17,16 @@ export const getAllInventories = async (req, res, next) => {
     next(error);
   }
 };
-
+//add inventory
 export const addInventory = async (req, res, next) => {
   try {
     const authorizedUser = await User.findById(req.user.id);
+
+    //validate the role
     if (authorizedUser?.role === "Inventory Manager") {
       const body = req.body;
       const { file } = req.files;
-
+      //image size validation
       if (file.size > 2000000) {
         return next(new errorHandler("Image size is too large"));
       }
@@ -52,6 +54,7 @@ export const addInventory = async (req, res, next) => {
           }
         }
       );
+      //if invalid role
     } else {
       next(errorHandler("You don't have access"));
     }
@@ -59,6 +62,8 @@ export const addInventory = async (req, res, next) => {
     next(error);
   }
 };
+
+//ubdate Inventory
 
 export const editInventory = async (req, res, next) => {
   try {
@@ -127,6 +132,8 @@ export const editInventory = async (req, res, next) => {
   }
 };
 
+//Delete Inventory
+
 export const deleteInventory = async (req, res, next) => {
   try {
     const authorizedUser = await User.findById(req.user.id);
@@ -168,6 +175,8 @@ export const getInventoryIssues = async (req, res, next) => {
   }
 };
 
+//add Inventory issue
+
 export const addInventoryIssue = async (req, res, next) => {
   try {
     const newInventoryIssue = await InventoryItemIssue.create(req.body);
@@ -178,6 +187,8 @@ export const addInventoryIssue = async (req, res, next) => {
     next(error);
   }
 };
+
+//delete Inventory isuue
 
 export const deleteInventoryIssue = async (req, res, next) => {
   try {

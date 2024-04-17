@@ -15,6 +15,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 app.use(express.json());
+//backend is connect with frontend
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(cookieParser());
 app.use(upload());
@@ -35,9 +36,11 @@ app.use((err, req, res, next) => {
   });
 });
 
+//database connection
+
 mongoose
   .connect(
-    "mongodb+srv://pasindu:cQYe1hKzXH3rwama@cluster0.4guq63g.mongodb.net/LMS_DB?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://it22170484:1234@cluster0.dwsvueb.mongodb.net/LMS_DB?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => console.log("Mongodb connected"))
   .catch((err) => console.log(err.message));

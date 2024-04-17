@@ -25,7 +25,7 @@ const Login = () => {
         password: "",
     });
     const { user, error } = useSelector(state => state.user)
-
+   //login details validation
     const formValidate = () => {
         const errors = {}
         let formIsValid = true
