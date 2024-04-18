@@ -11,17 +11,17 @@ const StudentDashboard = () => {
     const { user } = useSelector(state => state.user)
 
     useEffect(() => {
-        getQuestionsByStudentId(user._id).then(res => setNoOfAskedQuestions(res.length))
-    }, [user._id]);
+        getQuestionsByStudentId(user?._id).then(res => setNoOfAskedQuestions(res.length))
+    }, [user?._id]);
 
     useEffect(() => {
         getPastPapers().then(res => {
             const count = res.filter(({ paper }) => {
-                return paper.userId === user._id
+                return paper.userId === user?._id
             })
             setNoOfUploadedPapers(count.length)
         })
-    }, [user._id]);
+    }, [user?._id]);
 
     return (
         <div className="p-5">
