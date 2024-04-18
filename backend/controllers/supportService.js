@@ -142,9 +142,10 @@ export const getStudentQuestion = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const studentQuestion = await StudentQuestions.findById(id);
+    const studentQuestion = await StudentQuestions.findById(id)
+    const studentDetails = await User.findById(studentQuestion.studentId)
 
-    res.status(200).json(studentQuestion);
+    res.status(200).json({studentQuestion, studentDetails});
   } catch (error) {
     next(error);
   }

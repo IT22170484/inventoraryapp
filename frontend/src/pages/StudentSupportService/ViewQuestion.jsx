@@ -89,30 +89,30 @@ const ViewQuestion = () => {
                 <Typography
                     maxWidth={300}
                     variant="body1">
-                    ID: <span className="font-bold">{question?.studentId}</span></Typography>
+                    ID: <span className="font-bold">{question?.studentQuestion.studentId}</span></Typography>
                 <Typography
                     maxWidth={300}
-                    variant="body1">Grade: <span className="font-bold">{question?.grade}</span></Typography>
+                    variant="body1">Grade: <span className="font-bold">{question?.studentQuestion.grade}</span></Typography>
                 <Typography
                     maxWidth={300}
-                    variant="body1">Name: <span className="font-bold">Chamila</span></Typography>
+                    variant="body1">Name: <span className="font-bold">{question?.studentDetails.firstName} {question?.studentDetails.lastName}</span></Typography>
                 <Typography
                     maxWidth={300}
-                    variant="body1">Email: <span className="font-bold">chamila@gmail.com</span></Typography>
+                    variant="body1">Email: <span className="font-bold">{question?.studentDetails.email}</span></Typography>
             </div>
 
             <div className="flex flex-col items-center py-10">
-                <Typography variant="h4">{question?.topic}</Typography>
+                <Typography variant="h4">{question?.studentQuestion.topic}</Typography>
                 <Typography variant="body">
-                    {question?.explanation}
+                    {question?.studentQuestion.explanation}
                 </Typography>
-                <Button
+                {question?.studentQuestion.file && <Button
                     href={`${ASSETS_URL}/uploads/proofDocs/${question?.file}`}
                     variant="contained"
                     size="medium"
                     sx={{ mt: "10px", mb: "20px" }}>
                     view proof doc
-                </Button>
+                </Button>}
             </div>
 
             {!postedReply && <form onSubmit={handleSubmit} className="w-[75%] mb-12 mx-auto flex flex-col items-center">
